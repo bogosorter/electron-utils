@@ -31,7 +31,7 @@ const values: {[key: string]: SettingValue} = {
             '1.2',
             '1.4'
         ],
-        value: platform() == 'win32'? '0.8' : '1',
+        value: platform() === 'win32'? '0.8' : '1',
     },
     foldButton: {
         name: 'Fold navigation button',

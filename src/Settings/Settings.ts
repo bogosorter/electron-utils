@@ -20,7 +20,7 @@ export default class Settings {
     async get() {
         let definedSettings = await ESettings.get() as AppSettings;
 
-        if (!definedSettings.metadata || definedSettings.metadata.version != this.defaultSettings.metadata.version) {
+        if (!definedSettings.metadata || definedSettings.metadata.version !== this.defaultSettings.metadata.version) {
             definedSettings.metadata.version = this.defaultSettings.metadata.version;
             definedSettings.metadata.firstTime = this.defaultSettings.metadata.firstTime;
         }
