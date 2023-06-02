@@ -1,10 +1,9 @@
 import { app } from 'electron';
 import ESettings from 'electron-settings';
-import fs from 'fs';
 import path from 'path';
 
 import genericSettings from './genericSettings';
-import { AppSettings, SettingValue } from './settingInterface';
+import { AppSettings, SettingValue } from './types';
 
 const customCSSDirectory = path.join(app.getPath('userData'), 'customCSS');
 const customCSSFile = path.join(customCSSDirectory, 'custom.css');

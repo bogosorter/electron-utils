@@ -1,10 +1,10 @@
-type Metadata = {
+type SettingsMetadata = {
     categories: string[];
     version: string;
     firstTime: boolean;
 }
 
-type Select = {
+type SelectSetting = {
     name: string;
     description?: string;
     category: string;
@@ -12,14 +12,14 @@ type Select = {
     options: string[];
     value: string;
 }
-type Bool = {
+type BoolSetting = {
     name: string;
     description?: string;
     category: string;
     type: 'bool';
     value: boolean;
 }
-type Code = {
+type CodeSetting = {
     name: string;
     description?: string;
     category: string;
@@ -27,11 +27,11 @@ type Code = {
     language: string;
     value: string;
 }
-type SettingValue = Select | Bool | Code;
+type SettingValue = SelectSetting | BoolSetting | CodeSetting;
 
 type AppSettings = {
-    metadata: Metadata;
+    metadata: SettingsMetadata;
     values: {[key: string]: SettingValue};
 }
 
-export { Metadata, SettingValue, AppSettings };
+export { SettingsMetadata, SettingValue, AppSettings };

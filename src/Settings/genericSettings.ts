@@ -1,8 +1,8 @@
-import { App, app } from 'electron';
+import { app } from 'electron';
 import { platform } from 'os';
-import { Metadata, SettingValue, AppSettings } from "./settingInterface";
+import { SettingsMetadata, SettingValue, AppSettings } from './types';
 
-const metadata: Metadata = {
+const metadata: SettingsMetadata = {
     categories: ['Appearance'],
     version: app.getVersion(),
     firstTime: true
