@@ -38,5 +38,6 @@ export default class Settings {
 
     async reset() {
         await ESettings.set(this.defaultSettings);
+        return this.defaultSettings;
     }
 }

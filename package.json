@@ -1,6 +1,6 @@
 {
   "name": "@m7kra/electron-utils",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Useful electron scripts",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
