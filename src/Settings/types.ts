@@ -1,37 +1,43 @@
-type SettingsMetadata = {
-    categories: string[];
+export type CommonMetadata = {
+    labels: string[];
     version: string;
     firstTime: boolean;
 }
 
-type SelectSetting = {
+export type SelectSetting = {
     name: string;
     description?: string;
-    category: string;
+    label: string;
     type: 'select';
     options: string[];
     value: string;
 }
-type BoolSetting = {
+export type BoolSetting = {
     name: string;
     description?: string;
-    category: string;
+    label: string;
     type: 'bool';
     value: boolean;
 }
-type CodeSetting = {
+export type CodeSetting = {
     name: string;
     description?: string;
-    category: string;
+    label: string;
     type: 'code';
     language: string;
     value: string;
 }
-type SettingValue = SelectSetting | BoolSetting | CodeSetting;
 
-type AppSettings = {
-    metadata: SettingsMetadata;
-    values: {[key: string]: SettingValue};
+export type Setting = SelectSetting | BoolSetting | CodeSetting;
+
+export type CommonSettingValues = {
+    theme: SelectSetting;
+    zoom: SelectSetting;
+    foldButton: BoolSetting;
+    customCSS: CodeSetting;
 }
 
-export { SettingsMetadata, SettingValue, AppSettings };
+export type GenericSettings<T> = {
+    metadata: CommonMetadata;
+    values: CommonSettingValues & T;
+}

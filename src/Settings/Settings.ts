@@ -1,23 +1,21 @@
-import { app } from 'electron';
 import ESettings from 'electron-settings';
-import path from 'path';
+import { commonMetadata, commonSettingsValues } from './commonSettings';
+import { GenericSettings, Setting } from './types';
 
-import genericSettings from './genericSettings';
-import { AppSettings, SettingValue } from './types';
 
-const customCSSDirectory = path.join(app.getPath('userData'), 'customCSS');
-const customCSSFile = path.join(customCSSDirectory, 'custom.css');
+export default class Settings<T extends {[key: string]: Setting}> {
 
-export default class Settings {
+    defaultSettings: GenericSettings<T>;
 
-    defaultSettings: AppSettings;
-
-    constructor(customSettings: {[key: string]: SettingValue} = {}) {
-        this.defaultSettings = {...genericSettings, ...customSettings};
+    constructor(labels: string[], customSettings: T) {
+        this.defaultSettings = {
+            metadata: {...commonMetadata, labels: [...commonMetadata.labels, ...labels]},
+            values: {...commonSettingsValues, ...customSettings}
+        };
     }
 
     async get() {
-        let definedSettings = await ESettings.get() as AppSettings;
+        let definedSettings = await ESettings.get() as GenericSettings<T>;
 
         if (!definedSettings.metadata || definedSettings.metadata.version !== this.defaultSettings.metadata.version) {
             definedSettings.metadata.version = this.defaultSettings.metadata.version;
@@ -30,7 +28,7 @@ export default class Settings {
         return definedSettings;
     }
 
-    async set(settings: AppSettings) {
+    async set(settings: GenericSettings<T>) {
         // First time is never saved as true
         settings.metadata.firstTime = false;
         await ESettings.set(settings);

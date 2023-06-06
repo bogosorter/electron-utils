@@ -1,17 +1,17 @@
 import { app } from 'electron';
 import { platform } from 'os';
-import { SettingsMetadata, SettingValue, AppSettings } from './types';
+import { CommonMetadata, CommonSettingValues } from './types';
 
-const metadata: SettingsMetadata = {
-    categories: ['Appearance'],
+export const commonMetadata: CommonMetadata = {
+    labels: ['Appearance'],
     version: app.getVersion(),
     firstTime: true
-}
+};
 
-const values: {[key: string]: SettingValue} = {
+export const commonSettingsValues: CommonSettingValues = {
     theme: {
         name: 'Theme',
-        category: 'Appearance',
+        label: 'Appearance',
         type: 'select',
         options: [
             'light',
@@ -21,7 +21,7 @@ const values: {[key: string]: SettingValue} = {
     },
     zoom: {
         name: 'Zoom',
-        category: 'Appearance',
+        label: 'Appearance',
         type: 'select',
         options: [
             '0.7',
@@ -35,21 +35,17 @@ const values: {[key: string]: SettingValue} = {
     },
     foldButton: {
         name: 'Fold navigation button',
-        category: 'Appearance',
+        label: 'Appearance',
         description: 'This will fold the navigation buttons into a single one, which unfolds when hovered.',
         type: 'bool',
         value: false
     },
     customCSS: {
         name: 'Custom CSS',
-        category: 'Appearance',
+        label: 'Appearance',
         description: 'This allows you to change the app\'s appearance. See the documentation for more information',
         type: 'code',
         language: 'css',
         value: ''
     }
 };
-
-const settings: AppSettings = {metadata, values};
-
-export default settings;
